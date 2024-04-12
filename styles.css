@@ -1,0 +1,60 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin: 50px auto;
+    background-color: #efefef;
+}
+
+#flowmodoro-container {
+    border: 1px solid black;
+    width: 320px;
+    padding: 25px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0px 10px 36px 6px rgba(0, 0, 0, 0.5);
+}
+
+#timer {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+    box-shadow: 0px 6px 12px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    box-shadow: 0px 3px 12px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(3px);
+}
+
+#start-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#pause-button {
+    background-color: #f44336;
+    color: white;
+}
+
+#start-break:disabled,
+#pause-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+#break-info {
+    display: none;
+    margin-top: 20px;
+}
+
+footer {
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
