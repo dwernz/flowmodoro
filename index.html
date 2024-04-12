@@ -9,22 +9,31 @@
 </head>
 
 <body>
-    <div id="flowmodoro-container">
-        <h1>Flowmodoro Timer</h1>
-        <div id="timer">00:00:00</div>
-        <button id="start-button">Start</button>
-        <div id="break-info">
-            <h2>Break Time:</h2>
-            <p id="break-duration">00:00</p>
-            <button id="start-break" disabled>Start Break</button>
-        </div>
+    <h1>Flowmodoro Timer</h1>
+    <div id="timer">00:00:00</div>
+    <button id="start-button">Start</button>
+    <div id="break-info">
+        <h2>Break Time:</h2>
+        <p id="break-duration">00:00</p>
+        <button id="start-break" disabled>Start Break</button>
     </div>
-
-    <footer>
-        &copy;2024 - Daniel Wernz
-    </footer>
-    
+    <section id="previous-work-periods">
+        <h2>Previous Work Periods</h2>
+        <p id="cycle-display"></p>
+    </section>
     <script src="script.js"></script>
 </body>
 
 </html>
+
+<!-- 
+    To-do
+    _______________________________________
+
+    Previous time cycles to display even when hitting Start/Pause button, without the start break button
+
+    Hitting start without the start break button, will not reset the counter.
+
+    Add reset button
+
+ -->
