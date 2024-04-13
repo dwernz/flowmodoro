@@ -12,6 +12,12 @@ const breakDuration = document.getElementById("break-duration");
 const startBreakButton = document.getElementById("start-break");
 const previousWorkPeriodsElement = document.getElementById("previous-work-periods");
 const cycleDisplay = document.getElementById("cycle-display");
+const yearElement = document.getElementById("year");
+
+// for Copyright year
+const date = new Date();
+const year = date.getFullYear();
+yearElement.innerHTML = year;
 
 function updateTimer() {
     const currentTime = Date.now();

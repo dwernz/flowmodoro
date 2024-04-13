@@ -9,18 +9,25 @@
 </head>
 
 <body>
-    <h1>Flowmodoro Timer</h1>
-    <div id="timer">00:00:00</div>
-    <button id="start-button">Start</button>
-    <div id="break-info">
-        <h2>Break Time:</h2>
-        <p id="break-duration">00:00</p>
-        <button id="start-break" disabled>Start Break</button>
+    <div id="flowmodoro-container">
+        <h1>Flowmodoro Timer</h1>
+        <div id="timer">00:00:00</div>
+        <button id="start-button">Start</button>
+        <div id="break-info">
+            <h2>Break Time:</h2>
+            <p id="break-duration">00:00</p>
+            <button id="start-break" disabled>Start Break</button>
+        </div>
+        <section id="previous-work-periods">
+            <h2>Previous Work Periods</h2>
+            <p id="cycle-display"></p>
+        </section>
     </div>
-    <section id="previous-work-periods">
-        <h2>Previous Work Periods</h2>
-        <p id="cycle-display"></p>
-    </section>
+
+    <footer>
+        &copy; <span id="year"></span> - Daniel Wernz
+    </footer>
+
     <script src="script.js"></script>
 </body>
 
