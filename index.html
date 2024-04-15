@@ -12,7 +12,10 @@
     <div id="flowmodoro-container">
         <h1>Flowmodoro Timer</h1>
         <div id="timer">00:00:00</div>
-        <button id="start-button">Start</button>
+        <div class="btn-row">
+            <button id="start-button">Start</button>
+            <button id="reset-button">Reset</button>
+        </div>
         <div id="break-info">
             <h2>Break Time:</h2>
             <p id="break-duration">00:00</p>
@@ -37,7 +40,13 @@
     To-do
     _______________________________________
 
-    Previous time cycles to display even when hitting Start/Pause button, without the start break button
+    Add a button to each previous time to delete time.
+
+    Store to local storage
+
+    ____________________________________
+
+    Made it so reset times, are not added to the work cycles array
 
     Hitting start without the start break button, will not reset the counter.
 

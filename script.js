@@ -1,8 +1,10 @@
 let isRunning = false;
+let hasBeenPaused = false;
 let startTime = 0;
 let elapsedTime = 0;
 let breakTime = 0;
 let workPeriods = [];
+let pausedTime = 0;
 
 const timerElement = document.getElementById("timer");
 const startButton = document.getElementById("start-button");
@@ -13,19 +15,31 @@ const startBreakButton = document.getElementById("start-break");
 const previousWorkPeriodsElement = document.getElementById("previous-work-periods");
 const cycleDisplay = document.getElementById("cycle-display");
 const yearElement = document.getElementById("year");
+const resetButton = document.getElementById("reset-button");
 
 // for Copyright year
 const date = new Date();
 const year = date.getFullYear();
 yearElement.innerHTML = year;
 
+// To-Do, Simplify code, DRY
 function updateTimer() {
-    const currentTime = Date.now();
-    elapsedTime = currentTime - startTime;
-    const seconds = Math.floor((elapsedTime / 1000) % 60);
-    const minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
-    const hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
-    timerElement.innerText = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    if (hasBeenPaused) {
+        const currentTime = Date.now();
+        elapsedTime = currentTime - startTime + pausedTime;
+        const seconds = Math.floor((elapsedTime / 1000) % 60);
+        const minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+        const hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+        timerElement.innerText = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    }
+    else {
+        const currentTime = Date.now();
+        elapsedTime = currentTime - startTime;
+        const seconds = Math.floor((elapsedTime / 1000) % 60);
+        const minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+        const hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+        timerElement.innerText = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    }
 }
 
 function startTimer() {
@@ -46,7 +60,8 @@ function startTimer() {
         startButton.style.backgroundColor = '#4caf50';
         startButton.innerText = 'Start';
         breakInfo.style.display = "block";
-        workPeriods.push(elapsedTime); // Save work period duration to array
+        hasBeenPaused = true;
+        pausedTime = elapsedTime;
     }
 }
 
@@ -54,6 +69,7 @@ function startBreak() {
     isRunning = true;
     startTime = Date.now();
     startBreakButton.disabled = true;
+    workPeriods.push(elapsedTime); // Save work period duration to array
     intervalId = setInterval(() => {
         const currentTime = Date.now();
         const remainingBreakTime = breakTime - (currentTime - startTime);
@@ -92,5 +108,27 @@ function startBreak() {
     previousWorkPeriodsElement.style.display = 'block';
 }
 
+function resetTimer() {
+    elapsedTime = 0;
+    startTime = 0;
+    pausedTime = 0;
+    isRunning = false;
+    breakTime = 0;
+
+    const hours = 0;
+    const minutes = 0;
+    const seconds = 0;
+
+    startButton.style.backgroundColor = '#4caf50';
+    startButton.innerText = 'Start';
+
+    breakInfo.style.display = "none";
+
+    clearInterval(intervalId);
+
+    timerElement.innerText = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+}
+
 startButton.addEventListener("click", startTimer);
 startBreakButton.addEventListener("click", startBreak);
+resetButton.addEventListener("click", resetTimer);
