@@ -68,6 +68,7 @@ function startTimer() {
 function startBreak() {
     isRunning = true;
     startTime = Date.now();
+    hasBeenPaused = false;
     startBreakButton.disabled = true;
     workPeriods.push(elapsedTime); // Save work period duration to array
     intervalId = setInterval(() => {
