@@ -75,6 +75,7 @@ function startBreak() {
         const currentTime = Date.now();
         const remainingBreakTime = breakTime - (currentTime - startTime);
         if (remainingBreakTime <= 0) {
+            alarmSound();
             clearInterval(intervalId);
             isRunning = false;
             elapsedTime = 0;
@@ -128,6 +129,14 @@ function resetTimer() {
     clearInterval(intervalId);
 
     timerElement.innerText = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+}
+
+function alarmSound() {
+    const alarm = new Audio("alarm.ogg");
+
+    console.log(alarm);
+
+    alarm.play();
 }
 
 startButton.addEventListener("click", startTimer);
