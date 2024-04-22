@@ -99,9 +99,16 @@ function startBreak() {
                 }
             }
             if (workPeriods.length > 1) { // Check if there's more than one work period
+                const totalHours = Math.floor((totalWorkTime / (1000 * 60 * 60)) % 60);
                 const totalMinutes = Math.floor((totalWorkTime / (1000 * 60)) % 60);
                 const totalSeconds = Math.floor((totalWorkTime / 1000) % 60);
-                previousWorkPeriodsText += `Total: ${totalMinutes.toString().padStart(2, "0")}:${totalSeconds.toString().padStart(2, "0")}`;
+
+                if (totalHours > 0) {
+                    previousWorkPeriodsText += `Total: ${totalHours.toString().padStart(2, "0")}:${totalMinutes.toString().padStart(2, "0")}:${totalSeconds.toString().padStart(2, "0")}`;
+                }
+                else {
+                    previousWorkPeriodsText += `Total: ${totalMinutes.toString().padStart(2, "0")}:${totalSeconds.toString().padStart(2, "0")}`;
+                }
             }
 
             cycleDisplay.innerText = previousWorkPeriodsText;
