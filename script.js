@@ -88,9 +88,15 @@ function startBreak() {
             let previousWorkPeriodsText = "";
             for (let i = 0; i < workPeriods.length; i++) {
                 const workPeriodTime = workPeriods[i];
+                const hours = Math.floor((workPeriodTime / (1000 * 60 * 60)) % 60);
                 const minutes = Math.floor((workPeriodTime / (1000 * 60)) % 60);
                 const seconds = Math.floor((workPeriodTime / 1000) % 60);
-                previousWorkPeriodsText += `Cycle ${i + 1} - ${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}\n`;
+                if (hours > 0) {
+                    previousWorkPeriodsText += `Cycle ${i + 1} - ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}\n`;
+                }
+                else {
+                    previousWorkPeriodsText += `Cycle ${i + 1} - ${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}\n`;
+                }
             }
             if (workPeriods.length > 1) { // Check if there's more than one work period
                 const totalMinutes = Math.floor((totalWorkTime / (1000 * 60)) % 60);
